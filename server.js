@@ -1,9 +1,14 @@
+import * as dotenv from 'dotenv'; //helps to access env variables in the app
+dotenv.config();
 import express from 'express';
+const app = express();
 import morgan from 'morgan';
 
-const app = express();
+if (process.env.NODE_ENV === 'development') {
+  // logs the info about our requests
+  app.use(morgan('dev'));
+}
 
-app.use(morgan('dev'));
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -15,6 +20,7 @@ app.post('/', (req, res) => {
   res.json({ 'message': 'Data received', data: req.body });
 });
 
-app.listen(5100, () => {
-  console.log('Server is running on port 5100');
+const port = process.env.PORT || 5100;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
