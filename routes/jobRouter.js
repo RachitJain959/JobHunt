@@ -4,12 +4,12 @@ const router = Router();
 import {
   getAllJobs,
   getSingleJob,
-  editJob,
+  updateJob,
   createJob,
   deleteJob,
 } from '../controllers/jobController.js';
 
 router.route('/').get(getAllJobs).post(createJob);
-router.route('/:id').get(getSingleJob).patch(editJob).delete(deleteJob);
+router.route('/:id').get(getSingleJob).patch(updateJob).delete(deleteJob);
 
 export default router;

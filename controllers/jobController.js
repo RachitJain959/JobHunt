@@ -28,22 +28,15 @@ export const getSingleJob = async (req, res) => {
   res.status(200).json({ job });
 };
 
-export const editJob = async (req, res) => {
-  const { company, role } = req.body;
+export const updateJob = async (req, res) => {
   const { id } = req.params;
-  const job = jobs.find((job) => job.id === id);
-  if (!job) {
+
+  const updatedJob = await Job.findByIdAndUpdate(id, req.body, { new: true });
+  if (!updatedJob) {
     return res.status(404).json({ msg: `no job with id: ${id}` });
   }
 
-  if (!company || !role) {
-    return res.status(400).json({ msg: 'please provide company & role' });
-  }
-
-  job.company = company;
-  job.role = role;
-
-  res.status(200).json({ msg: 'job modified', job });
+  res.status(200).json({ msg: 'job modified', job: updatedJob });
 };
 
 export const deleteJob = async (req, res) => {
