@@ -1,3 +1,4 @@
+import 'express-async-errors'; // keeps the server running if there are errors
 import * as dotenv from 'dotenv'; //helps to access env variables in the app
 dotenv.config();
 import express from 'express';

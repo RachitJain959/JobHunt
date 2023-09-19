@@ -19,7 +19,7 @@ const JobSchema = new mongoose.Schema(
       default: 'my-city',
     },
   },
-  { timestamps: True }
+  { timestamps: true }
 );
 
 export default mongoose.model('JobCollection', JobSchema);
