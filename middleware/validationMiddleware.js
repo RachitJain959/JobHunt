@@ -1,5 +1,5 @@
 import { body, validationResult } from 'express-validator';
-import { BadRequestError } from '../errors/customErrors';
+import { BadRequestError } from '../errors/customErrors.js';
 
 const withValidationErrors = (validateValues) => {
   return [
@@ -14,3 +14,12 @@ const withValidationErrors = (validateValues) => {
     },
   ];
 };
+
+export const validateTest = withValidationErrors([
+  body('name')
+    .notEmpty()
+    .withMessage('name is required')
+    .isLength({ min: 3 })
+    .withMessage('name must be at-least 3chars')
+    .trim(),
+]);
