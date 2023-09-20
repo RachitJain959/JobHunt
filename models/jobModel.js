@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { JOB_STATUS } from '../utils/constants.js';
+import { JOB_STATUS, JOB_TYPE } from '../utils/constants.js';
 
 const JobSchema = new mongoose.Schema(
   {
@@ -12,8 +12,8 @@ const JobSchema = new mongoose.Schema(
     },
     jobType: {
       type: String,
-      enum: ['Full-time', 'Part-time', 'Internship'],
-      default: 'Full-time',
+      enum: Object.values(JOB_TYPE),
+      default: JOB_TYPE.FULL_TIME,
     },
     jobLocation: {
       type: String,
