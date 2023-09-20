@@ -10,7 +10,7 @@ import mongoose from 'mongoose';
 import jobRouter from './routes/jobRouter.js';
 
 //middleware
-import errorHandleMiddleware from './middleware/errorHandlerMiddleware.js';
+import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
 
 if (process.env.NODE_ENV === 'development') {
   // logs the info about our requests
@@ -29,7 +29,7 @@ app.use('*', (req, res) => {
   res.status(404).json({ msg: 'not found' });
 });
 
-app.use(errorHandleMiddleware);
+app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 5100;
 try {
