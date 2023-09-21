@@ -7,28 +7,24 @@ export const getAllJobs = async (req, res) => {
 };
 
 export const createJob = async (req, res) => {
-  const { company, role } = req.body;
-  const job = await Job.create({ company, role });
+  const { company, position } = req.body;
+  const job = await Job.create({ company, position });
   res.status(StatusCodes.CREATED).json({ job });
 };
 
 export const getSingleJob = async (req, res) => {
-  const { id } = req.params;
-
-  const job = await Job.findById(id);
+  const job = await Job.findById(req.params.id);
   res.status(StatusCodes.OK).json({ job });
 };
 
 export const updateJob = async (req, res) => {
-  const { id } = req.params;
-
-  const updatedJob = await Job.findByIdAndUpdate(id, req.body, { new: true });
+  const updatedJob = await Job.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
   res.status(StatusCodes.OK).json({ msg: 'job modified', job: updatedJob });
 };
 
 export const deleteJob = async (req, res) => {
-  const { id } = req.params;
-
-  const deletedJob = await Job.findByIdAndDelete(id);
+  const deletedJob = await Job.findByIdAndDelete(req.params.id);
   res.status(StatusCodes.OK).json({ msg: 'job deleted', job: deletedJob });
 };
