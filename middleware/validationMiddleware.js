@@ -50,8 +50,8 @@ export const validateRegisterInput = withValidationErrors([
     .withMessage('email is required')
     .isEmail()
     .withMessage('invalid email format')
-    .custom((email) => {
-      const user = User.findOne({ email });
+    .custom(async (email) => {
+      const user = await User.findOne({ email });
       if (user) {
         throw new BadRequestError('email already exists');
       }
@@ -63,5 +63,5 @@ export const validateRegisterInput = withValidationErrors([
     .withMessage('password must be at-least 8 characters long'),
   body('location').notEmpty().withMessage('location is required'),
   body('lastName').notEmpty().withMessage('last name is required'),
-  body('role').isIn(Object.values(USER_ROLE)).withMessage('invalid role type'),
+  //   body('role').isIn(Object.values(USER_ROLE)).withMessage('invalid role type'),
 ]);
