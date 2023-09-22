@@ -21,7 +21,7 @@ export class UnauthenticatedError extends Error {
   constructor(message) {
     super(message);
     this.name = 'UnauthenticatedError';
-    this.stack = StatusCodes.UNAUTHORIZED;
+    this.statusCode = StatusCodes.UNAUTHORIZED;
   }
 }
 
@@ -29,6 +29,6 @@ export class UnauthorizedError extends Error {
   constructor(message) {
     super(message);
     this.name = 'UnauthorizedError';
-    this.stack = StatusCodes.FORBIDDEN;
+    this.statusCode = StatusCodes.FORBIDDEN;
   }
 }
