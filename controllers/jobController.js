@@ -2,7 +2,7 @@ import Job from '../models/jobModel.js';
 import { StatusCodes } from 'http-status-codes'; // Removing hard-coded status codes with refactored reusable status codes
 
 export const getAllJobs = async (req, res) => {
-  //   console.log(req);
+  console.log(req.user);
   const jobs = await Job.find({});
   res.status(StatusCodes.OK).json({ jobs });
 };
