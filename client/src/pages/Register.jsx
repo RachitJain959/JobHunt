@@ -1,4 +1,4 @@
-import { Form, Link, redirect } from 'react-router-dom';
+import { Form, Link, redirect, useNavigation } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
 import Logo from '../components/Logo';
 import FormRow from '../components/FormRow';
@@ -18,6 +18,8 @@ export const action = async ({ request }) => {
 };
 
 const Register = () => {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === 'submitting';
   return (
     <Wrapper>
       <div>
@@ -35,8 +37,12 @@ const Register = () => {
           <FormRow type="email" name="email" defaultValue="test@email.com" />
           <FormRow type="password" name="password" defaultValue="secret123" />
 
-          <button type="submit" className="btn btn-block">
-            Submit
+          <button
+            type="submit"
+            className="btn btn-block"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Submitting...' : 'Submit'}
           </button>
           <p>
             Already a member?{' '}
