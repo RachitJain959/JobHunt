@@ -3,7 +3,9 @@ import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
 import Logo from '../components/Logo';
 import FormRow from '../components/FormRow';
 
-export const action = async (data) => {
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
   console.log(data);
   return null;
 };
@@ -24,11 +26,7 @@ const Register = () => {
           />
           <FormRow type="text" name="location" defaultValue="earth" />
           <FormRow type="email" name="email" defaultValue="a@email.com" />
-          <FormRow
-            type="password"
-            name="password"
-            defaultValue="okmijn741852"
-          />
+          <FormRow type="password" name="password" defaultValue="secret" />
 
           <button type="submit" className="btn btn-block">
             Submit
