@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Form, Link } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
 import Logo from '../components/Logo';
 import FormRow from '../components/FormRow';
@@ -7,7 +7,7 @@ const Register = () => {
   return (
     <Wrapper>
       <div>
-        <form className="form">
+        <Form method="post" className="form">
           <Logo />
           <h4>Register</h4>
           <FormRow type="text" name="name" defaultValue="asd" />
@@ -34,7 +34,7 @@ const Register = () => {
               Login
             </Link>
           </p>
-        </form>
+        </Form>
       </div>
     </Wrapper>
   );
