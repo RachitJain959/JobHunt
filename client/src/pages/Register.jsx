@@ -3,6 +3,11 @@ import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
 import Logo from '../components/Logo';
 import FormRow from '../components/FormRow';
 
+export const action = async (data) => {
+  console.log(data);
+  return null;
+};
+
 const Register = () => {
   return (
     <Wrapper>
