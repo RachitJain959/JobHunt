@@ -10,7 +10,7 @@ export const action = async ({ request }) => {
   const data = Object.fromEntries(formData);
 
   try {
-    await customFetch('/auth/login', data);
+    await customFetch.post('/auth/login', data);
     toast.success('Logged in successfully.');
     return redirect('/dashboard');
   } catch (error) {
