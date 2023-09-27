@@ -18,10 +18,7 @@ export const loader = async () => {
 const DashboardContext = createContext();
 
 const DashboardLayout = ({ isDarkThemeEnabled }) => {
-  const data = useLoaderData();
-  //   console.log(data);
-  //temp
-  const user = { name: 'ronny' };
+  const { user } = useLoaderData();
   const [showSidebar, setShowSidebar] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(isDarkThemeEnabled);
 
@@ -58,7 +55,8 @@ const DashboardLayout = ({ isDarkThemeEnabled }) => {
           <div>
             <Navbar />
             <div className="dashboard-page">
-              <Outlet />
+              {/* Context will provide user to all the components & pages within this page*/}
+              <Outlet context={{ user }} />{' '}
             </div>
           </div>
         </main>
