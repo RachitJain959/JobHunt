@@ -1,4 +1,4 @@
-import { Link, redirect } from 'react-router-dom';
+import { Link, redirect, useNavigation, Form } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
 import Logo from '../components/Logo';
 import FormRow from '../components/FormRow';
@@ -14,6 +14,7 @@ export const action = async ({ request }) => {
     toast.success('Logged in successfully.');
     return redirect('/dashboard');
   } catch (error) {
+    toast.error(error?.response?.data?.msg);
     return error;
   }
 
@@ -21,20 +22,22 @@ export const action = async ({ request }) => {
 };
 
 const Login = () => {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === 'submitting';
   return (
     <Wrapper>
       <div>
-        <form className="form">
+        <Form method="post" className="form">
           <Logo />
           <h4>Login</h4>
           <FormRow name="email" type="email" defaultValue="a@email.com" />
-          <FormRow
-            name="password"
-            type="password"
-            defaultValue="okmijn741852"
-          />
-          <button type="submit" className="btn btn-block">
-            Submit
+          <FormRow name="password" type="password" defaultValue="secret123" />
+          <button
+            type="submit"
+            className="btn btn-block"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Submitting...' : 'Submit'}
           </button>
           <button type="button" className="btn btn-block">
             Explore the App
@@ -45,7 +48,7 @@ const Login = () => {
               Register
             </Link>
           </p>
-        </form>
+        </Form>
       </div>
     </Wrapper>
   );
