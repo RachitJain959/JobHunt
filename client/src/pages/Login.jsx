@@ -1,7 +1,24 @@
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
 import Logo from '../components/Logo';
 import FormRow from '../components/FormRow';
+import customFetch from '../utils/customFetch';
+import { toast } from 'react-toastify'; //provides alerts to the user
+
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+
+  try {
+    await customFetch('/auth/login', data);
+    toast.success('Logged in successfully.');
+    return redirect('/dashboard');
+  } catch (error) {
+    return error;
+  }
+
+  return null;
+};
 
 const Login = () => {
   return (
