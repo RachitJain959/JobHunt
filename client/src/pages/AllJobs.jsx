@@ -1,5 +1,26 @@
+import { toast } from 'react-toastify';
+import customFetch from '../utils/customFetch';
+import { useLoaderData } from 'react-router-dom';
+import { JobContainer, SearchContainer } from '../components';
+
+export const loader = async () => {
+  try {
+    const { data } = await customFetch.get('/jobs');
+    return { data };
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    return error;
+  }
+};
+
 const AllJobs = () => {
-  return <h1>AllJobs</h1>;
+  const { data } = useLoaderData();
+  return (
+    <>
+      <SearchContainer />
+      <JobContainer />
+    </>
+  );
 };
 
 export default AllJobs;
