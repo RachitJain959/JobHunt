@@ -1,6 +1,7 @@
 import { Form, useNavigation, useOutletContext } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/DashboardFormPage';
-import { FormRow } from '../components';
+import { FormRow, FormRowSelect } from '../components';
+import { JOB_TYPE, JOB_STATUS } from '../../../utils/constants';
 
 const AddJob = () => {
   const { user } = useOutletContext();
@@ -18,6 +19,18 @@ const AddJob = () => {
             labelText="job location"
             name="jobLocation"
             defaultValue={user.location}
+          />
+          <FormRowSelect
+            name="jobStatus"
+            labelText="job status"
+            defaultValue={JOB_STATUS.PENDING}
+            list={Object.values(JOB_STATUS)}
+          />
+          <FormRowSelect
+            name="jobType"
+            labelText="job type"
+            defaultValue={JOB_TYPE.FULL_TIME}
+            list={Object.values(JOB_TYPE)}
           />
           <button
             type="submit"
