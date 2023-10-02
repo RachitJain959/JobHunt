@@ -77,7 +77,7 @@ const router = createBrowserRouter([
             element: <Admin />,
           },
           {
-            path: 'edit-job',
+            path: 'edit-job/:id',
             element: <EditJob />,
           },
         ],
