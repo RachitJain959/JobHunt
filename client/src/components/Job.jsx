@@ -4,6 +4,7 @@ import JobInfo from './JobInfo';
 
 import day from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
+import { Form, Link } from 'react-router-dom';
 day.extend(advancedFormat);
 
 const Job = ({
@@ -32,7 +33,14 @@ const Job = ({
           <JobInfo icon={<FaBriefcase />} text={jobType} />
           <div className={`status ${jobStatus}`}>{jobStatus}</div>
         </div>
-        <footer className="actions"></footer>
+        <footer className="actions">
+          <Link className="btn edit-btn">Edit</Link>
+          <Form>
+            <button type="submit" className="btn delete-dtn">
+              Delete
+            </button>
+          </Form>
+        </footer>
       </div>
     </Wrapper>
   );
