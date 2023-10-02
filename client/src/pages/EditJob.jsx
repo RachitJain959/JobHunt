@@ -1,8 +1,15 @@
-import { useParams } from 'react-router-dom';
+import { redirect, useLoaderData, useParams } from 'react-router-dom';
+import customFetch from '../utils/customFetch';
+import { toast } from 'react-toastify';
 
 export const loader = async ({ params }) => {
-  console.log(params);
-  return null;
+  try {
+    const { data } = await customFetch.get(`/jobs/${params.id}`);
+    return data;
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    return redirect('/dashboard/all-jobs');
+  }
 };
 
 export const action = async () => {
@@ -10,8 +17,8 @@ export const action = async () => {
 };
 
 const EditJob = () => {
-  const params = useParams();
-  //   console.log(params);
+  const { job } = useLoaderData();
+  console.log(job);
   return <h1>EditJob</h1>;
 };
 
