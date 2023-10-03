@@ -16,11 +16,19 @@ import userRouter from './routes/userRouter.js';
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
 import { authenticateUser } from './middleware/authMiddleware.js';
 
+//public
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 if (process.env.NODE_ENV === 'development') {
   // logs the info about our requests
   app.use(morgan('dev'));
 }
 
+app.use(express.static(path.resolve(__dirname, './public')));
 app.use(cookieParser());
 app.use(express.json());
 
