@@ -19,8 +19,16 @@ export const updateUser = async (req, res) => {
 };
 
 export const getApplicationStats = async (req, res) => {
-  const users = await User.countDocuments();
+  const newUser = await User.countDocuments();
   const jobs = await Job.countDocuments();
 
-  res.status(StatusCodes.OK).json({ users, jobs });
+  //   if the user uploads a new Image, then delete the previous img
+  if (req.file) {
+    const response = await cloudinary.v2.uploader.upload(req.file.path);
+    await fs.unlink(req.file.path);
+    newUser.avatar = response.secure_url;
+    newUser.avatarPublicId = response.public_id;
+  }
+
+  res.status(StatusCodes.OK).json({ users: newUser, jobs });
 };
