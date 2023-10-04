@@ -11,7 +11,6 @@ export const getCurrentUser = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-  console.log(req.file);
   const newUser = { ...req.body };
   delete newUser.password;
 
@@ -27,6 +26,7 @@ export const updateUser = async (req, res) => {
   if (req.file && updatedUser.avatarPublicId) {
     await cloudinary.v2.uploader.destroy(avatar.avatarPublicId);
   }
+
   res.status(StatusCodes.OK).json({ msg: 'update user' });
 };
 
