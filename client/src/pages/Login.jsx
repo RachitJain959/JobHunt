@@ -1,4 +1,4 @@
-import { Link, redirect, Form } from 'react-router-dom';
+import { Link, redirect, Form, useNavigate } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
 import Logo from '../components/Logo';
 import FormRow from '../components/FormRow';
@@ -23,6 +23,21 @@ export const action = async ({ request }) => {
 };
 
 const Login = () => {
+  const navigate = useNavigate();
+  const loginDemoUser = async () => {
+    const data = {
+      'email': 'test@test.com',
+      'password': 'secret123',
+    };
+
+    try {
+      await customFetch.post('/auth/login', data);
+      toast.success('Go for a test run.');
+      navigate('/dashboard');
+    } catch (error) {
+      toast.error(error?.response?.data?.msg);
+    }
+  };
   return (
     <Wrapper>
       <div>
@@ -32,7 +47,11 @@ const Login = () => {
           <FormRow name="email" type="email" defaultValue="test@email.com" />
           <FormRow name="password" type="password" defaultValue="secret123" />
           <SubmitBtn />
-          <button type="button" className="btn btn-block">
+          <button
+            type="button"
+            className="btn btn-block"
+            onClick={loginDemoUser}
+          >
             Explore the App
           </button>
           <p>
