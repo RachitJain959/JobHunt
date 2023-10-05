@@ -72,6 +72,8 @@ export const showStats = async (req, res) => {
         count: { $sum: 1 },
       },
     },
+    { $sort: { '_id.year': -1, '_id.month': -1 } }, // sort in latest order
+    { $limit: 6 },
   ]);
 
   //   const monthlyApplications = [
