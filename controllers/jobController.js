@@ -47,7 +47,7 @@ export const showStats = async (req, res) => {
     // group the jobs from the user into jobStatus categories & count them
     { $group: { _id: '$jobStatus', count: { $sum: 1 } } },
   ]);
-  console.log(stats);
+  //   console.log(stats);
   // O/P : { _id: 'pending', count: 40 },
   //      { _id: 'declined', count: 29 },
   //      { _id: 'interview', count: 31 }
@@ -57,13 +57,13 @@ export const showStats = async (req, res) => {
     accumulator[title] = count;
     return accumulator;
   }, {});
-  console.log(stats); // O/P: { pending: 40, declined: 29, interview: 31 }
+  //   console.log(stats); // O/P: { pending: 40, declined: 29, interview: 31 }
 
   // hardcoding the defaultStats & monthApps to check if the functionality is working
   const defaultStats = {
-    pending: 12,
-    declined: 10,
-    interview: 20,
+    pending: stats.pending || 0,
+    declined: stats.declined || 0,
+    interview: stats.interview || 0,
   };
 
   const monthlyApplications = [
