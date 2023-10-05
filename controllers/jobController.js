@@ -1,7 +1,7 @@
 import Job from '../models/jobModel.js';
 import { StatusCodes } from 'http-status-codes'; // Removing hard-coded status codes with refactored reusable status codes
 import mongoose from 'mongoose';
-import dayjs from 'dayjs';
+import day from 'dayjs';
 
 export const getAllJobs = async (req, res) => {
   // getting only those jobs created by that particular user
@@ -75,6 +75,21 @@ export const showStats = async (req, res) => {
     { $sort: { '_id.year': -1, '_id.month': -1 } }, // sort in latest order
     { $limit: 6 },
   ]);
+
+  monthlyApplications = monthlyApplications
+    .map((item) => {
+      const {
+        _id: { year, month },
+        count,
+      } = item;
+      const date = day()
+        .month(month - 1)
+        .year(year)
+        .format('MMM YYYY');
+
+      return { date, count };
+    })
+    .reverse();
 
   //   const monthlyApplications = [
   //     {
