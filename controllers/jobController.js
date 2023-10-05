@@ -42,7 +42,10 @@ export const showStats = async (req, res) => {
     // Stage 2- createdBy: references a user
     // Stage 3- req.user.userId: it returns a string which needs to be converted to an object type
 
-    { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } }, //grabbing all the jobs that belongs to the specific user with userId
+    { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } }, //grab all the jobs that belongs to the specific user with userId
+
+    // group the jobs from the user into jobStatus categories & count them
+    { $group: { _id: '$jobStatus', count: { $sum: 1 } } },
   ]);
   console.log(stats);
 
