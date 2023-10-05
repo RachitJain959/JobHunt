@@ -37,6 +37,15 @@ export const deleteJob = async (req, res) => {
 };
 
 export const showStats = async (req, res) => {
+  let stats = await Job.aggregate([
+    // Stage 1- $match: requires an object
+    // Stage 2- createdBy: references a user
+    // Stage 3- req.user.userId: it returns a string which needs to be converted to an object type
+
+    { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } }, //grabbing all the jobs that belongs to the specific user with userId
+  ]);
+  console.log(stats);
+
   // hardcoding the defaultStats & monthApps to check if the functionality is working
   const defaultStats = {
     pending: 12,
