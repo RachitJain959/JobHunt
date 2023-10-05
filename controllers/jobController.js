@@ -1,5 +1,7 @@
 import Job from '../models/jobModel.js';
 import { StatusCodes } from 'http-status-codes'; // Removing hard-coded status codes with refactored reusable status codes
+import mongoose from 'mongoose';
+import dayjs from 'dayjs';
 
 export const getAllJobs = async (req, res) => {
   // getting only those jobs created by that particular user
@@ -32,4 +34,8 @@ export const updateJob = async (req, res) => {
 export const deleteJob = async (req, res) => {
   const deletedJob = await Job.findByIdAndDelete(req.params.id);
   res.status(StatusCodes.OK).json({ msg: 'job deleted', job: deletedJob });
+};
+
+export const showStats = async (req, res) => {
+  res.send('show stats');
 };
