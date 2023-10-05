@@ -48,6 +48,16 @@ export const showStats = async (req, res) => {
     { $group: { _id: '$jobStatus', count: { $sum: 1 } } },
   ]);
   console.log(stats);
+  // O/P : { _id: 'pending', count: 40 },
+  //      { _id: 'declined', count: 29 },
+  //      { _id: 'interview', count: 31 }
+
+  stats = stats.reduce((accumulator, current) => {
+    const { _id: title, count } = current;
+    accumulator[title] = count;
+    return accumulator;
+  }, {});
+  console.log(stats); // O/P: { pending: 40, declined: 29, interview: 31 }
 
   // hardcoding the defaultStats & monthApps to check if the functionality is working
   const defaultStats = {
