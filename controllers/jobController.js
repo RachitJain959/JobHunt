@@ -41,7 +41,6 @@ export const showStats = async (req, res) => {
     // Stage 1- $match: requires an object
     // Stage 2- createdBy: references a user
     // Stage 3- req.user.userId: it returns a string which needs to be converted to an object type
-
     { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } }, //grab all the jobs that belongs to the specific user with userId
 
     // group the jobs from the user into jobStatus categories & count them
@@ -59,27 +58,36 @@ export const showStats = async (req, res) => {
   }, {});
   //   console.log(stats); // O/P: { pending: 40, declined: 29, interview: 31 }
 
-  // hardcoding the defaultStats & monthApps to check if the functionality is working
   const defaultStats = {
     pending: stats.pending || 0,
     declined: stats.declined || 0,
     interview: stats.interview || 0,
   };
 
-  const monthlyApplications = [
+  let monthlyApplications = await Job.aggregate([
+    { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
     {
-      date: 'May 23',
-      count: 11,
+      $group: {
+        _id: { year: { $year: '$createdAt' }, month: { $month: '$createdAt' } },
+        count: { $sum: 1 },
+      },
     },
-    {
-      date: 'Jun 23',
-      count: 8,
-    },
-    {
-      date: 'Jul 23',
-      count: 3,
-    },
-  ];
+  ]);
+
+  //   const monthlyApplications = [
+  //     {
+  //       date: 'May 23',
+  //       count: 11,
+  //     },
+  //     {
+  //       date: 'Jun 23',
+  //       count: 8,
+  //     },
+  //     {
+  //       date: 'Jul 23',
+  //       count: 3,
+  //     },
+  //   ];
 
   res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
 };
