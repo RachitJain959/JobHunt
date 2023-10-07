@@ -5,7 +5,7 @@ import day from 'dayjs';
 
 export const getAllJobs = async (req, res) => {
   // getting only those jobs created by that particular user
-  const { search } = req.query;
+  const { search, jobStatus, jobType } = req.query;
 
   const queryObject = {
     createdBy: req.user.userId,
@@ -18,6 +18,14 @@ export const getAllJobs = async (req, res) => {
         company: { $regex: search, $options: 'i' },
       },
     ];
+  }
+
+  if (jobStatus && jobStatus !== 'all') {
+    queryObject.jobStatus = jobStatus;
+  }
+
+  if (jobType && jobType !== 'all') {
+    queryObject.jobType = jobType;
   }
 
   const jobs = await Job.find(queryObject);
