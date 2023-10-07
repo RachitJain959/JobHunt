@@ -5,11 +5,17 @@ import day from 'dayjs';
 
 export const getAllJobs = async (req, res) => {
   // getting only those jobs created by that particular user
-  console.log(req.query);
-  const jobs = await Job.find({
+  const { search } = req.query;
+
+  const queryObject = {
     createdBy: req.user.userId,
-    position: req.query.search,
-  });
+  };
+
+  if (search) {
+    queryObject.position = req.query.search;
+  }
+
+  const jobs = await Job.find(queryObject);
   res.status(StatusCodes.OK).json({ jobs });
 };
 
