@@ -1,6 +1,6 @@
 import Wrapper from '../assets/wrappers/PageBtnContainer';
 import { useAllJobsContext } from '../pages/AllJobs';
-import { HiChevronDoubleLeft } from 'react-icons/hi';
+import { HiChevronDoubleLeft, HiChevronDoubleRight } from 'react-icons/hi';
 
 const PageBtnContainer = () => {
   const {
@@ -12,6 +12,11 @@ const PageBtnContainer = () => {
       <button className="btn prev-btn">
         <HiChevronDoubleLeft />
         prev
+      </button>
+      <div className="btn-container"></div>
+      <button className="btn next-btn">
+        <HiChevronDoubleRight />
+        next
       </button>
     </Wrapper>
   );
