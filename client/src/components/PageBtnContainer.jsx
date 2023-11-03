@@ -6,7 +6,10 @@ const PageBtnContainer = () => {
   const {
     data: { noOfPages, currentPage },
   } = useAllJobsContext();
-  console.log(noOfPages, currentPage);
+  const pages = Array.from({ length: noOfPages }, (_, index) => {
+    return index + 1;
+  }); //underscore is a complex object(undefined), which we don't care about,not important. The only thing that I care about here is the index.
+  console.log(pages);
   return (
     <Wrapper>
       <button className="btn prev-btn">
@@ -15,8 +18,8 @@ const PageBtnContainer = () => {
       </button>
       <div className="btn-container"></div>
       <button className="btn next-btn">
-        <HiChevronDoubleRight />
         next
+        <HiChevronDoubleRight />
       </button>
     </Wrapper>
   );
