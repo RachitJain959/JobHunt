@@ -16,7 +16,20 @@ const PageBtnContainer = () => {
         <HiChevronDoubleLeft />
         prev
       </button>
-      <div className="btn-container"></div>
+      <div className="btn-container">
+        {pages.map((pageNumber) => {
+          return (
+            <button
+              className={`btn page-btn ${
+                pageNumber === currentPage && 'active'
+              }`}
+              key={pageNumber}
+            >
+              {pageNumber}
+            </button>
+          );
+        })}
+      </div>
       <button className="btn next-btn">
         next
         <HiChevronDoubleRight />
