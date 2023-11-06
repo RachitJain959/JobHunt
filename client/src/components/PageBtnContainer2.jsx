@@ -21,6 +21,40 @@ const PageBtnContainer = () => {
     navigate(`${pathname}?${searchParams.toString()}`);
   };
 
+  const addPageButton = ({ pageNumber, activeClass }) => {
+    return (
+      <button
+        className={`btn page-btn ${activeClass && 'active'}`}
+        key={pageNumber}
+        onClick={() => {
+          handlePageChange(pageNumber);
+        }}
+      >
+        {pageNumber}
+      </button>
+    );
+  };
+
+  const renderPageButtons = () => {
+    const pageButtons = [];
+
+    pageButtons.push(
+      addPageButton({ pageNumber: 1, activeClass: currentPage === 1 })
+    );
+    // current page
+    pageButtons.push(
+      addPageButton({ pageNumber: currentPage, activeClass: true })
+    );
+
+    pageButtons.push(
+      addPageButton({
+        pageNumber: noOfPages,
+        activeClass: currentPage === noOfPages,
+      })
+    );
+    return pageButtons;
+  };
+
   return (
     <Wrapper>
       <button
@@ -34,23 +68,7 @@ const PageBtnContainer = () => {
         <HiChevronDoubleLeft />
         prev
       </button>
-      <div className="btn-container">
-        {pages.map((pageNumber) => {
-          return (
-            <button
-              className={`btn page-btn ${
-                pageNumber === currentPage && 'active'
-              }`}
-              key={pageNumber}
-              onClick={() => {
-                handlePageChange(pageNumber);
-              }}
-            >
-              {pageNumber}
-            </button>
-          );
-        })}
-      </div>
+      <div className="btn-container">{renderPageButtons()}</div>
       <button
         className="btn next-btn"
         onClick={() => {
