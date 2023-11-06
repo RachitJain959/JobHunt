@@ -44,8 +44,8 @@ const Login = () => {
         <Form method="post" className="form">
           <Logo />
           <h4>Login</h4>
-          <FormRow name="email" type="email" defaultValue="test@email.com" />
-          <FormRow name="password" type="password" defaultValue="secret123" />
+          <FormRow name="email" type="email" />
+          <FormRow name="password" type="password" />
           <SubmitBtn />
           <button
             type="button"
