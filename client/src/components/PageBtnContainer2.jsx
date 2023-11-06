@@ -42,6 +42,15 @@ const PageBtnContainer = () => {
       addPageButton({ pageNumber: 1, activeClass: currentPage === 1 })
     );
 
+    // dots
+    if (currentPage > 3) {
+      pageButtons.push(
+        <span className="page-btn dots" key="dots-1">
+          ...
+        </span>
+      );
+    }
+
     // before current page
     if (currentPage !== 1 && currentPage !== 2) {
       pageButtons.push(
@@ -59,6 +68,15 @@ const PageBtnContainer = () => {
     if (currentPage !== noOfPages && currentPage !== noOfPages - 1) {
       pageButtons.push(
         addPageButton({ pageNumber: currentPage + 1, activeClass: false })
+      );
+    }
+
+    // dots
+    if (currentPage < noOfPages - 2) {
+      pageButtons.push(
+        <span className="page-btn dots" key="dots+1">
+          ...
+        </span>
       );
     }
 
