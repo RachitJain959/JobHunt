@@ -1,6 +1,6 @@
-# JOBHUNTR
+# [JOBHUNT]()
 
-Jobhuntr is a job tracking application designed to streamline the job search process by allowing users to track their job applications, manage interviews, and monitor application progress. Built with Vite for the frontend and utilizing React Router for frontend routing, Jobhuntr also incorporates features like user authentication, role-based access control, and data caching with React Query. The backend is powered by Express.js and MongoDB, providing a robust and scalable infrastructure for storing and managing user data.
+Jobhunt is a job tracking application designed to streamline the job search process by allowing users to track their job applications, manage interviews, and monitor application progress. Built with Vite for the frontend and utilizing React Router for frontend routing, Jobhunt also incorporates features like user authentication, role-based access control, and data caching with React Query. The backend is powered by Express.js and MongoDB, providing a robust and scalable infrastructure for storing and managing user data.
 
 ## Features
 
