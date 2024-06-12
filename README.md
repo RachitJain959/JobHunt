@@ -1,6 +1,38 @@
 # [JOBHUNT](https://jobhunt-x1z9.onrender.com/)
 
+![](images/home-light.png)
+
 Jobhunt is a job tracking application designed to streamline the job search process by allowing users to track their job applications, manage interviews, and monitor application progress. Built with Vite for the frontend and utilizing React Router for frontend routing, Jobhunt also incorporates features like user authentication, role-based access control, and data caching with React Query. The backend is powered by Express.js and MongoDB, providing a robust and scalable infrastructure for storing and managing user data.
+
+## Demo Images:
+
+### Home
+
+![](images/home-light.png)
+![](images/home-dark.png)
+
+### Login & Register
+
+![](images/login.png)
+![](images/register.png)
+
+### Dashboard
+
+![](images/addJob.png)
+![](images/addJob-dark.png)
+
+### Stats
+
+![](images/stats-area.png)
+![](images/stats-bar-dark.png)
+
+### Profile
+
+![](images/profile.png)
+
+### Admin
+
+![](images/admin-dark.png)
 
 ## Features
 
