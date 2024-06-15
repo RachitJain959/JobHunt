@@ -1,4 +1,4 @@
-# [JOBHUNT](https://jobhunt-x1z9.onrender.com/)
+# [JOBHUNT](https://jobhuntr.vercel.app/)
 
 ![](images/home-light.png)
 
